@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block middle %}
+    <h1>cart goods List</h1>
+    <table border="1" cellspacing="0" width ="60%">
+        <tr>
+            <tr>
+                <td>id</td>
+                <td>name</td>
+                <td>price</td>
+                <td>create_time</td>
+                <td>operation</td>
+                <td>operation2</td>
+            </tr>
+        {% for good in goodslist %}
+            <tr>
+                <td>{{good.id}}</td>
+                <td>{{good.name}}</td>
+                <td>{{good.price}}</td>
+                <td>{{good.create_time}}</td>
+                <td><a href="javascript:;" onclick="buy('{{ good.id}}')"> buy now </a></td>{{msg}}
+                <td><a href="javascript:;" onclick="move('{{ good.id}}')"> move</a></td>{{msg}}
+            </tr>
+        {% endfor %}
+    </table>
+
+<!--     <td><a href="javascript:;" onclick="returnManagePage()"> return to the manage_main_page</a></td>-->
+    <td><a href="javascript:;" onclick="buyAll()"> buy all !!!!</a></td>
+    <td><a href="javascript:;" onclick="returnUserPage()"> return to the user_main_page</a></td>
+{% endblock %}
+
+
+{% block myjs%}
+    <script>
+        function buyAll(){
+                location.href = '/buyAllgoodfromcart'
+
+         }
+        function buy(goodsid){
+                location.href = '/buygoodfromcart?id='+goodsid
+
+         }
+        function returnUserPage(){
+
+                location.href = '/returnUserPage'
+         }
+         function move(goodsid){
+
+                location.href = '/movefromcart?id='+goodsid
+         }
+    </script>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block middle %}
+    <h1>Userinfo List</h1>
+    <table border="1" cellspacing="0" width ="60%">
+        <tr>
+            <tr>
+                <td>id</td>
+                <td>username</td>
+                <td>password</td>
+                <td>type</td>
+                <td>role</td>
+                <td>operation</td>
+                <td>personal detail</td>
+            </tr>
+        {% for user in userlist %}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.password}}</td>
+                <td>{{user.type}}</td>
+                <td>{{user.role}}</td>
+                <td><a href="javascript:;" onclick="del('{{ user.id}}')"> delete</a></td>
+                <td><a href="javascript:;" onclick="personal_goods_purchase('{{ user.id}}')"> detail</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+<div style=height:50px;></div><a href="/allgoodsinfo"><button>goods_manager_list</button></a></div>
+<div style=height:50px;></div><a href="/logout"><button>log out</button></a></div>
+{% endblock %}
+{% block myjs%}
+    <script>
+        function del(id){
+            location.href = '/delUser?id='+id
+        }
+        function personal_goods_purchase(id){
+            location.href = '/getPersonalDetail?id='+id
+        }
+
+    </script>
+{% endblock %}

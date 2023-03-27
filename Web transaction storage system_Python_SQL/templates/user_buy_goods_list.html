@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block middle %}
+    <h1>goods List</h1>
+     <tr>
+         <tr>
+             <td></div><a href="/selectAllGoodsbyType?id=1"><button>fruit</button></a></div></td>
+             <td></div><a href="/selectAllGoodsbyType?id=2"><button>game</button></a></div></td>
+             <td></div><a href="/selectAllGoodsbyType?id=3"><button>other</button></a></div></td>
+             <td></div><a href="/selectAllGoodsbyType?id=4"><button>meat</button></a></div></td>
+         </tr>
+    </tr>
+
+    <table border="1" cellspacing="0" width ="60%">
+        <tr>
+            <tr>
+                <td>id</td>
+                <td>name</td>
+                <td>price</td>
+                <td>create_time</td>
+                <td>operation</td>
+                <td>operation2</td>
+            </tr>
+        {% for good in goodslist %}
+            <tr>
+                <td>{{good.id}}</td>
+                <td>{{good.name}}</td>
+                <td>{{good.price}}</td>
+                <td>{{good.create_time}}</td>
+                <td><a href="javascript:;" onclick="buy('{{ good.id}}')"> buy</a></td>{{msg}}
+                <td><a href="javascript:;" onclick="addtocart('{{ good.id}}')"> add to cart</a></td>{{msg}}
+            </tr>
+        {% endfor %}
+    </table>
+
+<!--     <td><a href="javascript:;" onclick="returnManagePage()"> return to the manage_main_page</a></td>-->
+    <td><a href="javascript:;" onclick="returnUserPage()"> return to the user_main_page</a></td>
+{% endblock %}
+
+
+{% block myjs%}
+    <script>
+        function buy(goodsid){
+                location.href = '/buygood?id='+goodsid
+         }
+        function returnUserPage(){
+
+                location.href = '/returnUserPage'
+         }
+         function addtocart(goodsid){
+
+                location.href = '/addtocart?id='+goodsid
+         }
+    </script>
+{% endblock %}

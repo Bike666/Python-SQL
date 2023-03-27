@@ -1,0 +1,55 @@
+<!--<!DOCTYPE html>-->
+<!-- <html>-->
+<!-- <head>-->
+<!--     <meta  charset="UTF-8">-->
+<!--     <title>新用户注册</title>-->
+<!-- </head>-->
+<!-- <body>-->
+<!--     <h1>新用户注册</h1>-->
+<!--     <form  method="post">-->
+
+<!--        <table border="1" width="500" align="center">-->
+<!--            <caption>登入注册</caption>-->
+<!--            <tr>-->
+<!--                <td><label for="username">用户名</label></td>-->
+<!--                <td><input type="text" name="username" placeholder="请输入用户名" id="username"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td><label for="password">密码</label></td>-->
+<!--                <td><input type="text" name="username" placeholder="请输入密码" id="password"></td>-->
+<!--            </tr>-->
+<!--              <tr>-->
+<!--                <td><label for="password">密码</label></td>-->
+<!--                <td><input type="text" name="username" placeholder="请再一次输入密码" id="password2"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td colspan="2" align="center">-->
+<!--                    <input type="submit" value="注册">-->
+<!--                </td>-->
+<!--            </tr>-->
+
+<!--        </table>-->
+
+<!--     </form>-->
+<!-- </body>-->
+<!-- </html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post">
+    <label>account:</label><input type="text" name="username"><br>
+    <label>password:</label><input type="password" name="password"><br>
+    <label>password:</label><input type="password" name="password2"><br>
+    <input type="submit" value="register"><br>
+    {% for message in get_flashed_messages() %}
+        {{ message }}
+    {% endfor %}
+
+</body>
+</html>
+

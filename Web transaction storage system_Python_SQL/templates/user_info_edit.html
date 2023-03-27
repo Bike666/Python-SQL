@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block middle %}
+    <h1>user info edit</h1>
+    <table border="1" cellspacing="0" width ="60%">
+        <tr>
+            <tr>
+                <td>id</td>
+                <td>previous_name</td>
+                <td>previous_password</td>
+                <td>previous_create_time</td>
+            </tr>
+        {% for user in userlist %}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.password}}</td>
+                <td>{{user.create_time}}</td>
+
+            </tr>
+          <form  method="post"  action="update" >
+          <tr>
+                <td>id</td>
+                <td>new_username</td>
+                <td>new_password</td>
+                <td>previous_create_time</td>
+            </tr>
+           <tr>
+                <td>{{userlist[0].id}}</td>
+                <td> <input type="text"  name="username" ></td>
+                <td><input  type="text" name="password" ></td>
+                <td>{{userlist[0].create_time}}</td>
+                <td><a href="javascript:;" onclick="update('{{userlist[0].id}}')"> update</a></td>{{msg}}
+<!--                <td><input  type="submit" name="update" value="update"></td>-->
+           </tr>
+     </form>
+
+        {% endfor %}
+    </table>
+{% endblock %}
+<!--   <button onclick="window.location.href='/updategood'" type="button" id="updategood">update</button>-->
+{% block myjs%}
+    <script>
+        function update(id){
+           var  username = document.getElementsByName("username")[0].value
+           var password = document.getElementsByName("password")[0].value
+            location.href = '/updateuserbyid?id='+id+'&username='+username+'&password='+password
+        }
+    </script>
+
+{% endblock %}

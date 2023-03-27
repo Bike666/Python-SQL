@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block middle %}
+    <h1>goods info</h1>
+    <table border="1" cellspacing="0" width ="60%">
+        <tr>
+            <tr>
+                <td>id</td>
+                <td>previous_name</td>
+                <td>previous_price</td>
+                <td>previous_create_time</td>
+            </tr>
+        {% for good in goodslist %}
+            <tr>
+                <td>{{good.id}}</td>
+                <td>{{good.name}}</td>
+                <td>{{good.price}}</td>
+                <td>{{good.create_time}}</td>
+
+            </tr>
+          <form  method="post"  action="update" >
+          <tr>
+                <td>id</td>
+                <td>new_name</td>
+                <td>new_price</td>
+                <td>previous_create_time</td>
+            </tr>
+           <tr>
+                <td>{{goodslist[0].id}}</td>
+                <td> <input type="text"  name="name" ></td>
+                <td><input  type="text" name="price" ></td>
+                <td>{{goodslist[0].create_time}}</td>
+                <td><a href="javascript:;" onclick="update('{{goodslist[0].id}}')"> update</a></td>{{msg}}
+<!--                <td><input  type="submit" name="update" value="update"></td>-->
+           </tr>
+     </form>
+
+        {% endfor %}
+    </table>
+{% endblock %}
+<!--   <button onclick="window.location.href='/updategood'" type="button" id="updategood">update</button>-->
+{% block myjs%}
+    <script>
+        function update(id){
+           var  name = document.getElementsByName("name")[0].value
+           var price = document.getElementsByName("price")[0].value
+            location.href = '/updategood?id='+id+'&name='+name+'&price='+price
+        }
+    </script>
+
+{% endblock %}

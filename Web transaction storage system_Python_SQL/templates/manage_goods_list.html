@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block middle %}
+    <h1>goods List</h1>
+    <table border="1" cellspacing="0" width ="60%">
+        <tr>
+            <tr>
+                <td>id</td>
+                <td>name</td>
+                <td>price</td>
+                <td>create_time</td>
+                <td>operation</td>
+            </tr>
+        {% for good in goodslist %}
+            <tr>
+                <td>{{good.id}}</td>
+                <td>{{good.name}}</td>
+                <td>{{good.price}}</td>
+                <td>{{good.create_time}}</td>
+                <td><a href="javascript:;" onclick="get('{{ good.id}}')"> edit</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+ <h1>goods type List</h1>
+<table border="1" cellspacing="0" width ="60%">
+     <tr>
+            <tr>
+                <td>type_name</td>
+                <td>type_id</td>
+            </tr>
+            <tr>
+                <td>fruit</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>game</td>
+                <td>2</td>
+            </tr>
+             <tr>
+                <td>other</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>meat</td>
+                <td>4</td>
+            </tr>
+    </tr>
+</table>
+<h1>new product edit </h1>
+     <form  method="post">
+         <td>name</td>
+         <input type="text"  name="name" >
+         <td>price</td>
+         <input  type="text" name="price" >
+         <td>type</td>
+         <input  type="text" name="type" >
+         <td><a href="javascript:;" onclick="addgood()"> add new good</a></td>{{msg}}
+     </form>
+
+    <td><a href="javascript:;" onclick="returnManagePage()"> return to the manage_main_page</a></td>
+{% endblock %}
+
+
+{% block myjs%}
+    <script>
+        function get(id){
+            location.href = '/getgood?id='+id
+        }
+        function addgood(){
+               var  name = document.getElementsByName("name")[0].value
+               var price = document.getElementsByName("price")[0].value
+               var typeid = document.getElementsByName("type")[0].value
+                location.href = '/addgood?name='+name+'&price='+price+'&typeid='+typeid
+         }
+        function returnManagePage(){
+
+                location.href = '/returnManagePage'
+         }
+    </script>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block middle %}
+    <h1>Personal_Userinfo</h1>
+    <table border="1" cellspacing="0" width ="60%">
+        <tr>
+            <tr>
+                <td>id</td>
+                <td>username</td>
+                <td>password</td>
+                <td>type</td>
+                <td>role</td>
+                <td>operation</td>
+            </tr>
+        {% for user in userlist %}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.password}}</td>
+                <td>{{user.type}}</td>
+                <td>{{user.role}}</td>
+<!--                <td><a href="javascript:;" onclick="update('{{ user.id}}')"> edit</a></td>-->
+                <td><div style=height:50px;></div><a href="/getUserinfoByid"><button>edit</button></a></div></td>
+            </tr>
+        {% endfor %}
+    </table>
+<h1>search purchased goods by goodstype and time</h1>
+     <form  method="post">
+             <td>goodstype</td>
+             <input type="text"  name="goodstype" >
+             <td>starttime</td>
+             <input  type="text" name="starttime" >
+             <td>endtime</td>
+             <input  type="text" name="endtime" >
+             <td><a href="javascript:;" onclick="searchPersonalgoodsListByParam()">search</a></td>
+     </form>
+<h1>Personal_goods_purchase List</h1>
+    <table border="1" cellspacing="0" width ="60%">
+
+          <tr>
+            <tr>
+                <td>id</td>
+                <td>name</td>
+                <td>price</td>
+                <td>purchase_time</td>
+                <td>operation</td>
+            </tr>
+        {% for good in goodslist %}
+            <tr>
+                <td>{{good.id}}</td>
+                <td>{{good.name}}</td>
+                <td>{{good.price}}</td>
+                <td>{{good.create_time}}</td>
+                <td><a href="javascript:;" onclick="cancel('{{ good.id}}')"> cancel</a></td>{{msg}}
+            </tr>
+        {% endfor %}
+    </table>
+<div style=height:50px;></div><a href="/allgoodsinfoUser"><button>go to the goods shop</button></a></div>
+<div style=height:50px;></div><a href="/allcartgoodsinfoUser"><button>go to my shopping cart</button></a></div>
+<!--<div style=height:50px;></div><a href="/super"><button>return</button></a></div>-->
+{% endblock %}
+{% block myjs%}
+    <script>
+        function searchPersonalgoodsListByParam(){
+            var  goodstype = document.getElementsByName("goodstype")[0].value
+            var starttime = document.getElementsByName("starttime")[0].value
+            var endtime = document.getElementsByName("endtime")[0].value
+                location.href = '/searchPersonalgoodsListByParam?goodstype='+goodstype+'&starttime='+starttime+'&endtime='+endtime
+        }
+        function cancel(id){
+            //console.log(username)
+            location.href = '/delpurachsedgood?id='+id
+        }
+
+
+    </script>
+<div style=height:50px;></div><a href="/logout"><button>log out</button></a></div>
+{% endblock %}
